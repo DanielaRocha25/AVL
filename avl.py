@@ -70,7 +70,7 @@ class AVL:
 
     def busca(self, val):
         if self.root:
-            return self.search_data(val, self.root)
+            return self.busca_data(val, self.root)
         return False
 
     def busca_data(self, val, Node):
