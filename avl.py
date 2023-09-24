@@ -68,19 +68,14 @@ class AVL:
             return self.rotacionaEsquerda(root)
         return root
 
-    def busca(self, val):
-        if self.root:
-            return self.busca_data(val, self.root)
-        return False
+    def busca(self, root, valor):
+        if root is None or root.valor == valor:
+            return root
 
-    def busca_data(self, val, Node):
-        if val == Node.valor:
-            return True
-        elif val < Node.valor and Node.esquerda:
-            return self.busca_data(val, Node.esquerda)
-        elif val > Node.valor and Node.direita:
-            return self.busca_data(val, Node.direita)
-        return False
+        if valor < root.valor:
+            return self.busca(root.esquerda, valor)
+        return self.busca(root.direita, valor)
+
 
 #ordena a arvore
     def ordenar(self, root):
@@ -129,7 +124,6 @@ class AVL:
 Tree = AVL()
 r = None
 #Inserção
-
 r = Tree.inserir(4, r)
 r = Tree.inserir(6, r)
 r = Tree.inserir(7, r)
@@ -143,7 +137,7 @@ print("Arvore após deletar um valor:")
 Tree.ordenar(r)
 # Pesquisa
 print("\nPesquisa:")
-resultado = Tree.busca(3)
+resultado = Tree.busca(r,4)
 if resultado:
     print("Valor encontrado")
 else:
